@@ -51,7 +51,45 @@ public class Main {
 	private static void runDemoReservation() {
 
 		System.out.println("Welcome to the page RESERVATIONS");
+		System.out.println("Follow the instructions, find and reserve your flight");
+		
+		try(Scanner sc = new Scanner(System.in)) {
+			
+			 	String departurePlace;
+			 	String arrivalPlace;
+			 	String dateOfDeparture;
+			 	String dateOfReturn = "";
+			 	int typeOfTrip;
+			 	int numOfPassangers;
+			 				
+				System.out.println("Please, enter the departure place:");
+				departurePlace = sc.next();				
+				System.out.println("Please, enter the arrival place:");
+				arrivalPlace =sc.next();
+				System.out.println("Please, choose the flight:");
+				System.out.println("If you want round trip press 1, if you want one way trip press 2:");
+				typeOfTrip = sc.nextInt();			
+				System.out.println("Please, enter the date of departure in format dd/MM/yyyy:");				
+				dateOfDeparture = sc.next();		
+								 
+				 if (typeOfTrip == 1) {
+					 System.out.println("Please, enter the date of return in format dd/MM/yyyy:");
+					 dateOfReturn = sc.next();
+				 }
+				 
+				System.out.println("Please, enter the number of passangers");
+				numOfPassangers = sc.nextInt();				
+				
+				Reservation reservation = new Reservation(departurePlace, arrivalPlace, dateOfDeparture, dateOfReturn, typeOfTrip, numOfPassangers);	
 
+				System.out.println("You have successfully booked your flight. Your booking details are:");
+				System.out.println("Flight from:" + reservation.getDeparturePlace());
+				System.out.println("Flight to:" + reservation.getArrivalPlace());
+				System.out.println("Date of departure:" + reservation.getDateOfDeparture());
+				System.out.println("Date of return:" + reservation.getDateOfReturn());
+				System.out.println("Number of passangers:" + reservation.getNumOfPassangers());
+			}
+	
 	}
 	
 	private static void runDemoMyReservation() {
