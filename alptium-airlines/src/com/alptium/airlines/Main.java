@@ -123,7 +123,7 @@ public class Main {
 				System.out.println("Number of passangers:" + reservation.getNumOfPassangers());
 			}
 		
-try(Scanner sc = new Scanner(System.in)) {
+		try(Scanner sc = new Scanner(System.in)) {
 			
 			System.out.println("You can choose another option if you need!");
 			System.out.println("If you want to go to < FLIGHTS > page, enter F");
@@ -161,8 +161,59 @@ try(Scanner sc = new Scanner(System.in)) {
 	private static void runDemoMyReservation() {
 
 		System.out.println("Welcome to the page MY RESERVATIONS");
+		System.out.println("Here, you can manage and complete the reservation you had alredy made");
 		
-try(Scanner sc = new Scanner(System.in)) {
+		try(Scanner sc = new Scanner(System.in)){
+			
+			System.out.println("Enter your name");
+			String name = sc.next();
+			
+			System.out.println("Enter your surname");
+			String surname = sc.next();
+			
+			System.out.println("Enter the number of your reservation");
+			String reservationNumber = sc.next();
+			
+			System.out.println("Please choose a type of seat you wish to reserve entering the number of your option!");
+			System.out.println("Enter 1 if you want a seat with more space for your legs");
+			System.out.println("Enter 2 if you want the priority area");
+			System.out.println("Enter 3 if you want a regular seat");
+			String typeOfSeat = sc.next();
+			
+			System.out.println("If you plan to have more luggage than your card price covers answer with yes. If don't, answer with no!");
+			String luggage = sc.next();
+			
+			System.out.println("Is any person covered by your reservation a child? yes/no");
+			String isChild = sc.next();
+			
+			System.out.println("Do you bring any pet with you? yes/no");
+			String isPet = sc.next();
+			
+			System.out.println("Is any person covered by your reservation pregnant? yes/no");
+			String isPregnant = sc.next();
+			
+			System.out.println("Is any person covered by your reservation a disabled person? yes/no");
+			String isDisabledPerson = sc.next();
+			
+			System.out.println("Do you want to take some meals during the flight? yes/no");
+			String meal = sc.next();
+
+			MyReservation myReservation = new MyReservation(name, surname, reservationNumber, typeOfSeat, luggage, isChild, isPet, isPregnant, isDisabledPerson, meal);
+			
+			System.out.println("You registration is done. Plese check the data once more!");
+			System.out.println();
+			System.out.println("Client name and surname: " + myReservation.getName() + "\t" + myReservation.getSurname());
+			System.out.println("Number of your reservation: " + myReservation.getReservationNumber());
+			System.out.println("Type of seat: " + myReservation.getTypeOfSeat());
+			System.out.println("Do you plan more luggage than covered? "+ myReservation.getLuggage());
+			System.out.println("Dou you bring children? " + myReservation.getIsChild());
+			System.out.println("Is any person covered by your reservation pregnant? " + myReservation.getIsPregnant());
+			System.out.println("Is any person covered by your reservation a disabled person? " + myReservation.getIsDisabledPerson());
+			System.out.println("Applied for a meal? " + myReservation.getMeal());
+			System.out.println();
+			System.out.println();
+		
+		try(Scanner scc = new Scanner(System.in)) {
 			
 			System.out.println("You can choose another option if you need!");
 			System.out.println("If you want to go to < FLIGHTS > page, enter F");
@@ -173,7 +224,7 @@ try(Scanner sc = new Scanner(System.in)) {
 
 			System.out.println("Please, enter the path for your choise!");
 			
-			String choise = sc.next();
+			String choise = scc.next();
 				  
 			if(choise.equals("F") || choise.equals("f")) {
 				 runDemoFlight(); 
@@ -190,18 +241,19 @@ try(Scanner sc = new Scanner(System.in)) {
 				
 				 System.out.println("Please, TRY AGAIN");
 				 System.out.println();
-				 choise = sc.next();
-			 }
-			 
-		}		
-
+				 choise = scc.next();
+			 }		
+		}
+		
 	}
+		
+}
 	
 	private static void runDemoInformation() {
 
 		System.out.println("Welcome to the page INFORMATION");
 		
-try(Scanner sc = new Scanner(System.in)) {
+		try(Scanner sc = new Scanner(System.in)) {
 			
 			System.out.println("You can choose another option if you need!");
 			System.out.println("If you want to go to < FLIGHTS > page, enter F");
@@ -240,7 +292,7 @@ try(Scanner sc = new Scanner(System.in)) {
 
 		System.out.println("Welcome to the page CLIENTS");
 		
-try(Scanner sc = new Scanner(System.in)) {
+		try(Scanner sc = new Scanner(System.in)) {
 			
 			System.out.println("You can choose another option if you need!");
 			System.out.println("If you want to go to < FLIGHTS > page, enter F");
