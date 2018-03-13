@@ -4,7 +4,7 @@ public class Client {
 
 	private String name;
 	private String surname;
-	private int dateOfBirth;
+	private String dateOfBirth;
 	private String placeOfBirth;
 	private int JMBG;
 	private char gender;
@@ -15,7 +15,7 @@ public class Client {
 	private int passportID;
 	private String emailAddress;
 	
-	public Client (String name, String surname, int dateOfBirth, String placeOfBirth, int JMBG, char gender, String address, String town, String country, int phoneNumber, int passportID, String emailAddress) {
+	public Client (String name, String surname, String dateOfBirth, String placeOfBirth, int JMBG, char gender, String address, String town, String country, int phoneNumber, int passportID, String emailAddress) {
 		
 		this.name = name;
 		this.surname = surname;
@@ -38,7 +38,7 @@ public class Client {
 	}	public String getSurname() {
 			return surname;
 		
-	}	public int getDateOfBirth() {
+	}	public String getDateOfBirth() {
 			return dateOfBirth;
 		
 	}	public String getPlaceOfBirth() {
