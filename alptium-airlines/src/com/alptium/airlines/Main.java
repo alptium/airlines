@@ -292,11 +292,7 @@ public class Main {
 
 		System.out.println("Welcome to the page CLIENTS");
 		
-<<<<<<< HEAD
 			try(Scanner sc = new Scanner(System.in)) {
-=======
-		try(Scanner sc = new Scanner(System.in)) {
->>>>>>> b58ca47238f7ebb7797b6ff4295656e60d82f57d
 			
 				 System.out.println("Enter your name: ");
 				 String name = sc.next();			 
