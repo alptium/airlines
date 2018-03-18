@@ -198,7 +198,7 @@ public class Main {
 			System.out.println("Do you want to take some meals during the flight? yes/no");
 			String meal = sc.next();
 
-			MyReservation myReservation = new MyReservation(name, surname, reservationNumber, typeOfSeat, luggage, isChild, isPet, isPregnant, isDisabledPerson, meal);
+			Reservation myReservation = new Reservation(name, surname, reservationNumber, typeOfSeat, luggage, isChild, isPet, isPregnant, isDisabledPerson, meal);
 			
 			System.out.println("You registration is done. Plese check the data once more!");
 			System.out.println();
