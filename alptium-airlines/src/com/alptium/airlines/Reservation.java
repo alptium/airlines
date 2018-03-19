@@ -8,6 +8,7 @@ public class Reservation  {
 	private String dateOfReturn;
 	private int typeOfTrip;
 	private int numOfPassangers;
+	private int passportNumber;
 	private String name;
 	private String surname;
 	private String reservationNumber;
@@ -19,14 +20,15 @@ public class Reservation  {
 	private String isDisabledPerson;
 	private String meal;
 	
-	public Reservation (String departurePlace, String arrivalPlace, String dateOfDeparture, String dateOfReturn, int typeOfTrip, int numOfPassangers) {
+	public Reservation (String departurePlace, String arrivalPlace, String dateOfDeparture, String dateOfReturn, int typeOfTrip, int numOfPassangers, int passportNumber) {
 		
 		this.departurePlace = departurePlace;
 		this.arrivalPlace = arrivalPlace;
 		this.dateOfDeparture = dateOfDeparture;
 		this.dateOfReturn = dateOfReturn;
 		this.typeOfTrip = typeOfTrip;
-		this.numOfPassangers = numOfPassangers;		
+		this.numOfPassangers = numOfPassangers;	
+		this.passportNumber = passportNumber;
 	}	
 	
 	public Reservation(String name, String surname, String reservationNumber, String typeOfSeat, String luggage, String isChild, String isPet, String isPregnant, String isDisabledPerson, String meal) {
@@ -65,7 +67,12 @@ public class Reservation  {
 	
 	public int getNumOfPassangers() {
 		return numOfPassangers;
-	}	
+	}
+	
+	public int getPassportNumber() {
+		return passportNumber;
+	}
+	
 	public String getName() {
 		return name;
 	}
