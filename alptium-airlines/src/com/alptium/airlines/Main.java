@@ -267,11 +267,12 @@ public class Main {
 
 			            prep.executeUpdate();
 			            
+			            System.out.println("Your reservation has been changed!");
+			            
 					} catch (SQLException e) {
 						System.out.println(e.getMessage());						
 					}
-					
-					
+										
 				} else if (choise.equals("D") || choise.equals("d")) {
 					
 					try(Scanner delete = new Scanner(System.in)) {
@@ -288,6 +289,7 @@ public class Main {
 						PreparedStatement prep = connection.prepareStatement(sql);
 
 			            prep.executeUpdate();
+			            System.out.println("Your reservation has been deleted!");
 			            
 					} catch (SQLException e) {
 						System.out.println(e.getMessage());						
