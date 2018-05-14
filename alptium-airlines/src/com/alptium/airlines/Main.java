@@ -1,55 +1,91 @@
 package com.alptium.airlines;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Scanner;
+import java.util.Date;
 
 public class Main {
+	
+	public static enum LuggageType {HAND_LUGGAGE, KG_20, KG_30}
+	public static enum SeatType {BUSSINESS_SEAT, ECONOMY_SEAT}
+	public static enum MealType {STANDARD, VEGETERIAN, VEGAN, GLUTEENFREE}
 	
 	public static void main(String[] args) {
 		
 		try(Scanner sc = new Scanner(System.in)) {
+			
+			/*SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+			Calendar cal = Calendar.getInstance();
+			System.out.println(formatter.format(cal.getTime()));
+			 
+			Client client = new Client();
+			
+			System.out.println("Put the birthdate");
+			String start = sc.next();
+			Date startDate = formatter.parse(start);
+			client.setBirthDate(startDate);
+			System.out.println("===============" + client.getBirthDate());
+			int year = LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(startDate)).getYear();
+			System.out.println("=====888888=========" + cal.get(Calendar.YEAR) );
+			System.out.println("=====year=========" + year );
+			int yearsBetween = cal.get(Calendar.YEAR)-year;
+			
+			System.out.println("=====yearsBetween=========" + yearsBetween );*/
+			
+			/*int monthsDiff = today.get(Calendar.MONTH) 
+                    - birthDay.get(Calendar.MONTH);
+			long ageInMonths = yearsInBetween*12 + monthsDiff;
+			long age = yearsInBetween;
+			
+			System.out.println("Number of months since James gosling born : "
+			    + ageInMonths);
+			
+			System.out.println("Sir James Gosling's age : " + age);*/
 		
 		System.out.println("Welcome to Alptium Airlines application");
 		System.out.println("Now, you'll have to choose the option you need!");
 		System.out.println("If you want to go to < FLIGHTS > page, enter F");
 		System.out.println("If you want to go to < MAKE RESERVATIONS > page, enter R");
 		System.out.println("If you want to go to < MY RESERVATION > page, enter MR");
-		System.out.println("If you want to go to < INFORMATION > page, enter I");
 		System.out.println("If you want to go to < CLIENTS > page, enter C");
 
 		System.out.println("Please, enter the path for your choise!");
 		
 		String choise = sc.next();
 			  
-		if(choise.equals("F") || choise.equals("f")) {
+		if(choise.equalsIgnoreCase("F")) {
 			 runDemoFlight(); 
-		} else if(choise.equals("R") || choise.equals("r") ) {
+		} else if(choise.equalsIgnoreCase("R")) {
 			 runDemoReservation();
-		} else if(choise.equals("MR") || choise.equals("mr")) {
+		} else if(choise.equalsIgnoreCase("MR")) {
 			 runDemoMyReservation();		
-		} else if(choise.equals("I") || choise.equals("i")) {
-			 runDemoInformation();
-		} else if(choise.equals("C") || choise.equals("c")) {
+		} else if(choise.equalsIgnoreCase("C")) {
 			 runDemoClient();
-		} else while (!choise.equals("F") && !choise.equals("f") && !choise.equals("R") && !choise.equals("r") && !choise.equals("MR") && !choise.equals("mr") && !choise.equals("I") && !choise.equals("i") && !choise.equals("C") && !choise.equals("c")) {
+		} else while (!choise.equalsIgnoreCase("F") && !choise.equalsIgnoreCase("R") && !choise.equalsIgnoreCase("MR") && !choise.equalsIgnoreCase("C")) {
 			System.out.println("THE PATH YOU ENTERED IS INCORRECT!");
-			
-			 System.out.println("Please, TRY AGAIN");
-			 System.out.println();
-			 choise = sc.next();
-		 }
+			System.out.println("Please, TRY AGAIN");
+			System.out.println();
+			choise = sc.next();
+		}
 		 
-	}		
+	}
 		
 }
-
+	
+	
 	private static void runDemoFlight() {
 
 		System.out.println("Welcome to the page FLIGHTS");
 		
 		try(Scanner sc = new Scanner(System.in)) {
 			
-			System.out.println("You can choose another option if you need!");
+			
+			/*System.out.println("You can choose another option if you need!");
 			System.out.println("If you want to go to < FLIGHTS > page, enter F");
 			System.out.println("If you want to go to < MAKE RESERVATIONS > page, enter R");
 			System.out.println("If you want to go to < MY RESERVATION > page, enter MR");
@@ -77,7 +113,7 @@ public class Main {
 				 System.out.println();
 				 choise = sc.next();
 			 }
-			 
+			 */
 		}		
 
 	}
@@ -186,7 +222,7 @@ public class Main {
 				System.out.println("Please, enter the passport number:");				
 				passportNumber = sc.nextInt();
 				
-				Reservation reservation = new Reservation(departurePlace, arrivalPlace, dateOfDeparture, dateOfReturn, typeOfTrip, numOfPassangers, passportNumber);
+				//Reservation reservation = new Reservation(departurePlace, arrivalPlace, dateOfDeparture, dateOfReturn, typeOfTrip, numOfPassangers, passportNumber);
 				try {
 					
 				String sql = "insert into reservation "
@@ -194,26 +230,26 @@ public class Main {
 				
 				PreparedStatement prep = connection.prepareStatement(sql);
 				
-				prep.setString(1, reservation.getDeparturePlace());
+				/*prep.setString(1, reservation.getDeparturePlace());
 				prep.setString(2, reservation.getArrivalPlace());
 				prep.setString(3, reservation.getDateOfDeparture());
 				prep.setString(4, reservation.getDateOfReturn());
 				prep.setInt(5, reservation.getTypeOfTrip());
 				prep.setInt(6, reservation.getNumOfPassangers());
-				prep.setInt(7, reservation.getPassportNumber());
+				prep.setInt(7, reservation.getPassportNumber());*/
 				
 				prep.executeUpdate();
 				} catch (SQLException e) {
 
 					System.out.println(e.getMessage());
 				}
-				System.out.println("You have successfully booked your flight. Your booking details are:");
+			/*	System.out.println("You have successfully booked your flight. Your booking details are:");
 				System.out.println("Flight from:" + reservation.getDeparturePlace());
 				System.out.println("Flight to:" + reservation.getArrivalPlace());
 				System.out.println("Date of departure:" + reservation.getDateOfDeparture());
 				System.out.println("Date of return:" + reservation.getDateOfReturn());
 				System.out.println("Number of passangers:" + reservation.getNumOfPassangers());
-				System.out.println("Your passport number is: " + reservation.getPassportNumber());
+				System.out.println("Your passport number is: " + reservation.getPassportNumber());*/
 
 				System.out.println("=====================================================");
 				System.out.println("If you want to go to Confirm and Save, enter S and you will be forwarded to My Reservation page");
@@ -372,7 +408,7 @@ public class Main {
 			System.out.println("Do you want to take some meals during the flight? yes/no");
 			String meal = sc.next();
 
-			Reservation myReservation = new Reservation(name, surname, reservationNumber, typeOfSeat, luggage, isChild, isPet, isPregnant, isDisabledPerson, meal);
+			/*Reservation myReservation = new Reservation(name, surname, reservationNumber, typeOfSeat, luggage, isChild, isPet, isPregnant, isDisabledPerson, meal);
 			
 			System.out.println("You registration is done. Plese check the data once more!");
 			System.out.println();
@@ -385,7 +421,7 @@ public class Main {
 			System.out.println("Is any person covered by your reservation a disabled person? " + myReservation.getIsDisabledPerson());
 			System.out.println("Applied for a meal? " + myReservation.getMeal());
 			System.out.println();
-			System.out.println();
+			System.out.println();*/
 		
 		try(Scanner scc = new Scanner(System.in)) {
 			
@@ -493,7 +529,7 @@ public class Main {
 				 System.out.println("Enter your email address: ");
 				 String emailAddress = sc.next();
 				 
-				 Client client = new Client (name, surname, dateOfBirth, placeOfBirth, JMBG, gender, address, town, country, phoneNumber, passportID, emailAddress);
+				 /* Client client = new Client (name, surname, dateOfBirth, placeOfBirth, JMBG, gender, address, town, country, phoneNumber, passportID, emailAddress);
 				 
 				 System.out.println("You have been sucessfully added personal information to your reservation!");
 				 System.out.println("Before you continue, please check your data once again.");
@@ -503,7 +539,7 @@ public class Main {
 				 System.out.println("Your address, town and country: " + client.getAddress() + " " + client.getTown() + " " + client.getCountry());
 				 System.out.println("Your phone number and email address: " + client.getPassportID() + " " + client.getEmailAddress());
 			
-				 System.out.println("========================================================================");
+				 System.out.println("========================================================================");*/
 				 
 				 System.out.println("You can choose another option if you need!");
 				 System.out.println("If you want to go to < FLIGHTS > page, enter F");

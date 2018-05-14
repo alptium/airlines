@@ -1,120 +1,129 @@
 package com.alptium.airlines;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
+import com.alptium.airlines.Main.LuggageType;
+import com.alptium.airlines.Main.MealType;
+import com.alptium.airlines.Main.SeatType;
+
 public class Reservation  {
 	
-	private String departurePlace;
-	private String arrivalPlace;
-	private String dateOfDeparture;
-	private String dateOfReturn;
-	private int typeOfTrip;
-	private int numOfPassangers;
-	private int passportNumber;
-	private String name;
-	private String surname;
-	private String reservationNumber;
-	private String typeOfSeat;
-	private String luggage;
-	private String isChild;
-	private String isPet;
-	private String isPregnant;
+	private int ReservationID; //reservationNumber
+	private Client Client;
+	private String tripType;
 	private String isDisabledPerson;
-	private String meal;
+	private boolean isChild;
+	private String isPet;
+	private LuggageType luggageType;
+	private SeatType seatType;
+	private MealType mealType;
 	
-	public Reservation (String departurePlace, String arrivalPlace, String dateOfDeparture, String dateOfReturn, int typeOfTrip, int numOfPassangers, int passportNumber) {
-		
-		this.departurePlace = departurePlace;
-		this.arrivalPlace = arrivalPlace;
-		this.dateOfDeparture = dateOfDeparture;
-		this.dateOfReturn = dateOfReturn;
-		this.typeOfTrip = typeOfTrip;
-		this.numOfPassangers = numOfPassangers;	
-		this.passportNumber = passportNumber;
-	}	
-	
-	public Reservation(String name, String surname, String reservationNumber, String typeOfSeat, String luggage, String isChild, String isPet, String isPregnant, String isDisabledPerson, String meal) {
-		this.name = name;
-		this.surname = surname;
-		this.reservationNumber = reservationNumber;
-		this.typeOfSeat = typeOfSeat;
-		this.luggage = luggage;
+	public Reservation(int reservationID, Client client, String tripType, String isDisabledPerson,
+			boolean isChild, String isPet, LuggageType luggageType, SeatType seatType, MealType mealType) {
+		ReservationID = reservationID;
+		Client = client;
+		this.tripType = tripType;
+		this.isDisabledPerson = isDisabledPerson;
 		this.isChild = isChild;
 		this.isPet = isPet;
-		this.isPregnant = isPregnant;
-		this.isDisabledPerson = isDisabledPerson;
-		this.meal = meal;
-		
+		this.luggageType = luggageType;
+		this.seatType = seatType;
+		this.mealType = mealType;
 	}
-	
-	public String getDeparturePlace(){
-		return departurePlace;
+
+	public Reservation() {
+		super();
 	}
-	
-	public String getArrivalPlace(){
-		return arrivalPlace;
+
+	public int getReservationID() {
+		return ReservationID;
 	}
-	
-	public String getDateOfDeparture(){
-		return  dateOfDeparture;
+
+	public void setReservationID(int reservationID) {
+		ReservationID = reservationID;
 	}
-	
-	public String getDateOfReturn(){
-		return dateOfReturn;
+
+	public Client getClient() {
+		return Client;
 	}
-	
-	public int getTypeOfTrip() {
-		return typeOfTrip;
+
+	public void setClient(Client client) {
+		Client = client;
 	}
-	
-	public int getNumOfPassangers() {
-		return numOfPassangers;
+
+	public String getTripType() {
+		return tripType;
 	}
-	
-	public int getPassportNumber() {
-		return passportNumber;
+
+	public void setTripType(String tripType) {
+		this.tripType = tripType;
 	}
-	
-	public String getName() {
-		return name;
-	}
-	
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-	
-	public String getSurname() {
-		return surname;
-	}
-	
-	public String getReservationNumber() {
-		return reservationNumber;
-	}
-	
-	public String getTypeOfSeat() {
-		return typeOfSeat;
-	}
-	
-	public String getLuggage() {
-		return luggage;
-	}
-	
-	public String getIsChild() {
-		return isChild;
-	}
-	
-	public String getIsPet() {
-		return isPet;
-	}
-	
-	public String getIsPregnant() {
-		return isPregnant;
-	}
-	
+
 	public String getIsDisabledPerson() {
 		return isDisabledPerson;
 	}
+
+	public void setIsDisabledPerson(String isDisabledPerson) {
+		this.isDisabledPerson = isDisabledPerson;
+	}
+
+
+	public String getIsPet() {
+		return isPet;
+	}
+
+	public void setIsPet(String isPet) {
+		this.isPet = isPet;
+	}
+
+	public LuggageType getLuggageType() {
+		return luggageType;
+	}
+
+	public void setLuggageType(LuggageType luggageType) {
+		this.luggageType = luggageType;
+	}
+
+	public SeatType getSeatType() {
+		return seatType;
+	}
+
+	public void setSeatType(SeatType seatType) {
+		this.seatType = seatType;
+	}
+
+	public MealType getMealType() {
+		return mealType;
+	}
+
+	public void setMealType(MealType mealType) {
+		this.mealType = mealType;
+	}
+
+	public boolean isChild() {
+		return isChild;
+	}
+
+	/*Procedure for checking whether client is a child*/
+	public void setChild (Client client) {
+
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+		Calendar cal = Calendar.getInstance();
+		System.out.println(formatter.format(cal.getTime()));
+		
+		Date birthDate = client.getBirthDate();
+		int birthYear = LocalDate.parse(new SimpleDateFormat("yyyy-MM-dd").format(birthDate)).getYear();
+		int yearsBetween = cal.get(Calendar.YEAR) - birthYear;
 	
-	public String getMeal() {
-		return meal;
+		if (yearsBetween > 5) {
+			this.isChild = false;
+		}
+		
+		this.isChild = true;
 	}
 	
 }
